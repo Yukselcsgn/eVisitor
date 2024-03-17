@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "608430574378",
+    "project_id": "evisitor-5ba0a",
+    "storage_bucket": "evisitor-5ba0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608430574378:android:7542b60ae0ebca350c2c53",
+        "android_client_info": {
+          "package_name": "com.computer.evisitor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2h0CDDe8YTxCLICKwOKOKm-G0VbRM4WU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
