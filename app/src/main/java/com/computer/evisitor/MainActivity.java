@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;*/
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.e("onCreate Aktif","Aktif");
+
         toolbar=findViewById(R.id.toolbar);
         toolbar.setTitle("eVisitor");
         toolbar.setSubtitle("Medeniyetler Müzesi");
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("eVisitor");
 
+        Log.e("Tanımlamalar Yapıldı","Aktif");
+
         rv=findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         commentList = new ArrayList<>();
@@ -76,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         kaydet.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 String fullName = editTextfullName.getText().toString();
@@ -84,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 myRef.push().setValue(opinion);
             }
         });
-
+        Log.e("Click Aktif","Aktif");
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -120,11 +126,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
+        Log.e("Childlar aktif","Aktif");
         FirebaseRecyclerOptions<Opinion> options =
                 new FirebaseRecyclerOptions.Builder<Opinion>()
                         .setQuery(myRef, Opinion.class)
                         .build();
+
+        Log.e("FireRcyclerOptions Aktif","Aktif");
 
         FirebaseRecyclerAdapter<Opinion, RVAdapter.CardViewDesignObjectHolder> adapter =
                 new FirebaseRecyclerAdapter<Opinion, RVAdapter.CardViewDesignObjectHolder>(options) {
@@ -141,9 +149,11 @@ public class MainActivity extends AppCompatActivity {
                     protected void onBindViewHolder(RVAdapter.CardViewDesignObjectHolder holder, int position, Opinion model) {
                         holder.fullName.setText(model.getFullName());
                         holder.comment.setText(model.getComment());
-                        // Set the date here
+                        //date
                     }
                 };
+
+        Log.e("FireRcyclerOptions Aktif","Aktif");
         adapter.startListening();
 
 

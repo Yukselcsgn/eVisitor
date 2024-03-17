@@ -70,38 +70,32 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.CardViewDesignObje
         Opinion opinion = incommingCommentsList.get(position);
         holder.fullName.setText(opinion.getFullName());
         holder.comment.setText(opinion.getComment());
-        holder.date.setText(opinion.getDate().toString());
+
+        date = opinion.getDate();
 
         String dateString = opinion.getDate().toString();
-        holder.date.setText(dateString);
-
-        Object date1 = date;
-        private String formatDate(Object date1) {
-
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
-            Date date;
-            try {
-                date = inputFormat.parse(dateString);
-            } catch (ParseException e) {
-                e.printStackTrace();
-                return;
-            } catch (java.text.ParseException e) {
-                throw new RuntimeException(e);
-            }
-
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.US);
-            outputFormat.format(date);
-        }
-
-
-
+        String formattedDate = formatDate(dateString);
+        holder.date.setText(formattedDate);
     }
-
 
     @Override
     public int getItemCount() {
         return incommingCommentsList.size();
     }
 
+    private String formatDate(String dateString) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+        Date date;
+        try {
+            date = inputFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        } catch (java.text.ParseException e) {
+            throw new RuntimeException(e);
+        }
 
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.US);
+        return outputFormat.format(date);
+    }
 }
